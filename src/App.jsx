@@ -1,25 +1,30 @@
 import { useState } from 'react';
-import userData from "./components/userData.json"
 
+import initialContacts from './components/userData.json';
 import './App.css';
 import ContactList from './components/ContactList/ContactList';
+import SearchBox from './components/SearchBox/SearchBox';
+import ContactForm from './components/ContactForm/ContactForm';
 
 function App() {
-  // const [count, setCount] = useState(0);
+  const [contacts, setContacts] = useState(initialContacts);
+  const [findValue, setFindValue] = useState('');
+  console.log(contacts);
+  const searchContact = contacts.filter(contact =>
+    contact.name.toLowerCase(contact.name).includes(findValue.toLowerCase())
+  );
 
   return (
     <div className='wrapper'>
       <h1>Phonebook</h1>
-      {/* <ContactForm /> */}
-      {/* <SearchBox /> */}
-      <ContactList userData={userData} />
+      <ContactForm />
+      <SearchBox value={findValue} onFind={setFindValue} />
+      <ContactList userData={searchContact} />
     </div>
   );
 }
 
 export default App;
-
-
 
 // const dd = [
 //   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
