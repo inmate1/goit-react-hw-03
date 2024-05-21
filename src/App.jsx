@@ -1,25 +1,38 @@
 import { useState } from 'react';
 
-import initialContacts from './components/userData.json';
+import initialContacts from './userData.json';
 import './App.css';
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 import ContactForm from './components/ContactForm/ContactForm';
 
 function App() {
+
   const [contacts, setContacts] = useState(initialContacts);
   const [findValue, setFindValue] = useState('');
   console.log(contacts);
   const searchContact = contacts.filter(contact =>
     contact.name.toLowerCase(contact.name).includes(findValue.toLowerCase())
   );
-
+  const addContactItem = newContactItem => {
+    console.log(newContactItem);
+    setContacts(prevContacts => {
+      return [...prevContacts, newContactItem];
+    });
+  };
+  const deleteContact = (contactId) => {
+    console.log(contactId);
+    setContacts(prevContacts => {
+      return prevContacts.filter(prevContact => prevContact.id !== contactId)
+    })
+    
+  }
   return (
     <div className='wrapper'>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm onAdd={addContactItem} />
       <SearchBox value={findValue} onFind={setFindValue} />
-      <ContactList userData={searchContact} />
+      <ContactList userData={searchContact} onDelete={deleteContact} />
     </div>
   );
 }

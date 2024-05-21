@@ -2,9 +2,9 @@ import css from './Contact.module.css';
 import { FaPhone } from 'react-icons/fa6';
 import { IoPersonSharp } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
-const Contact = ({ name, number }) => {
+const Contact = ({ id, name, number, onDelete }) => {
   return (
-    <li className={css.listItem}>
+    <li className={css.listItem} id={id}>
       <div>
         <div className={css.text}>
           <IconContext.Provider value={{ color: 'black', size: '16' }}>
@@ -20,7 +20,11 @@ const Contact = ({ name, number }) => {
           <p>{number}</p>
         </div>
       </div>
-      <button className={css.btnContact} type='button' aria-label='delete'>
+      <button
+        className={css.btnContact}
+        type='button'
+        aria-label='delete'
+        onClick={() => onDelete(id)}>
         Delete
       </button>
     </li>

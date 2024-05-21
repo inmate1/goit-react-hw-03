@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { useId } from 'react';
 import * as Yup from 'yup';
 
@@ -15,7 +15,6 @@ const FeedbackSchema = Yup.object().shape({
       'Name must be in the format "First and Last" name with capitalized first letters'
     )
     .required('Input "First and Last" name'),
-
   number: Yup.string()
     .min(2, 'Too Short!')
     .max(9, 'Too Long!')
@@ -28,10 +27,19 @@ const initialValues = {
   number: '',
 };
 
-const ContactForm = () => {
+const ContactForm = ({ onAdd }) => {
   const nameFieldId = useId();
   const phoneFieldId = useId();
+
+
   const handleSubmit = (values, actions) => {
+    const contactItemId = Date.now();
+
+    onAdd({
+      id: contactItemId,
+      name: values.name,
+      number: values.number,
+    });
     console.log(values);
     actions.resetForm();
   };
