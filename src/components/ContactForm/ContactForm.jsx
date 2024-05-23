@@ -31,7 +31,6 @@ const ContactForm = ({ onAdd }) => {
   const nameFieldId = useId();
   const phoneFieldId = useId();
 
-
   const handleSubmit = (values, actions) => {
     const contactItemId = Date.now();
 
@@ -40,7 +39,6 @@ const ContactForm = ({ onAdd }) => {
       name: values.name,
       number: values.number,
     });
-    console.log(values);
     actions.resetForm();
   };
 
@@ -48,12 +46,7 @@ const ContactForm = ({ onAdd }) => {
     <div>
       <Formik
         initialValues={initialValues}
-        onSubmit={
-          handleSubmit
-          //   (values, actions) => {
-          //       actions.resetForm()
-          //   }
-        }
+        onSubmit={handleSubmit}
         validationSchema={FeedbackSchema}>
         {({ errors, touched }) => (
           <Form className={css.form}>
