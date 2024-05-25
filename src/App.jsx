@@ -15,7 +15,7 @@ function App() {
     }
     return initialContacts;
   };
-  const [contacts, setContacts] = useState(getInitialContacts());
+  const [contacts, setContacts] = useState(() => getInitialContacts());
   const [findValue, setFindValue] = useState('');
  
   useEffect(() => {

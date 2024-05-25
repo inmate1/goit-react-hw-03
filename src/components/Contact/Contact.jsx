@@ -1,7 +1,9 @@
 import css from './Contact.module.css';
+import PropTypes from 'prop-types';
 import { FaPhone } from 'react-icons/fa6';
 import { IoPersonSharp } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
+
 const Contact = ({ id, name, number, onDelete }) => {
   return (
     <li className={css.listItem} id={id}>
@@ -29,6 +31,13 @@ const Contact = ({ id, name, number, onDelete }) => {
       </button>
     </li>
   );
+};
+
+Contact.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default Contact;

@@ -1,6 +1,7 @@
 import { Formik, Form, Field } from 'formik';
 import { useId } from 'react';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 
 import css from './ContactForm.module.css';
 
@@ -104,4 +105,8 @@ const ContactForm = ({ onAdd }) => {
   );
 };
 
+
+ContactForm.propTypes = {
+  onAdd: PropTypes.func.isRequired
+}
 export default ContactForm;

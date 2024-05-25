@@ -1,11 +1,9 @@
+import PropTypes from 'prop-types';
 import css from './SearchBox.module.css';
-import { useState, useId } from 'react';
+import { useId } from 'react';
 
 const SearchBox = ({ value, onFind }) => {
   const inputId = useId();
-  //  const handleFind = evt => {
-  //    setFindValue(evt.target.value);
-  //  };
 
   return (
     <div className={css.wrapper}>
@@ -16,10 +14,15 @@ const SearchBox = ({ value, onFind }) => {
         name='input'
         id={inputId}
         value={value}
-        onChange={ (evt) => onFind(evt.target.value)}
+        onChange={evt => onFind(evt.target.value)}
       />
     </div>
   );
+};
+
+SearchBox.propTypes = {
+  value: PropTypes.string.isRequired,
+  onFind: PropTypes.func.isRequired,
 };
 
 export default SearchBox;
